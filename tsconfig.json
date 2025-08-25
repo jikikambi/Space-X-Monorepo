@@ -1,0 +1,41 @@
+{
+  "compilerOptions": {
+    // Use modern JS but compatible with current Node.js
+    "target": "ES2020",
+    "module": "CommonJS",
+
+    // Use modern language features
+    // lib : Tells TS which JS features are available in the runtime (e.g. Promise, Array.prototype.at, etc.)
+    // ["ESNext"] is safe for Node 18+ and ensures no missing type definitions from newer JS features
+    "lib": [ "ESNext"],
+
+    // Output directory
+    "rootDir": "src",
+    "outDir": "./dist",
+
+    // Module resolution settings for monorepos
+    "moduleResolution": "Node",
+    "baseUrl": "./src",
+    "paths": {
+      "@shared/*": ["shared/*"]
+    },
+    "typeRoots": [ "./node_modules/@types"], // Pick up types globally
+
+    // Compatibility flags
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "allowSyntheticDefaultImports": true,
+
+    // Strictness
+    "strict": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true
+  },
+  "include": [
+    "src/**/*"
+  ],
+  "exclude": [
+    "dist",
+    "node_modules"
+  ]
+}

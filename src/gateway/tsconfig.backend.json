@@ -1,0 +1,14 @@
+{
+    "extends":"../../tsconfig.json",
+  "compilerOptions": {
+    "outDir": "../../dist/gateway"    
+  },
+  "include": [
+    "./**/*",
+    "../../shared/types/**/*"
+  ],
+  "exclude": [
+    "../../dist",
+    "node_modules"
+  ]
+}

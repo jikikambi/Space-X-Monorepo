@@ -1,0 +1,6 @@
+{
+  "watch": ["server", "types"],
+  "ext": "ts",
+  "ignore": ["node_modules"],
+  "exec": "ts-node --project tsconfig.backend.json server.ts"
+}
