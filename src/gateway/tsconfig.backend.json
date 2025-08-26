@@ -1,11 +1,12 @@
 {
-    "extends":"../../tsconfig.json",
+  "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "outDir": "../../dist/gateway"    
+    "outDir": "../../dist/gateway"
   },
   "include": [
     "./**/*",
-    "../../shared/types/**/*"
+    "../../shared/types/**/*",
+    "../../shared/utils/**/*"
   ],
   "exclude": [
     "../../dist",

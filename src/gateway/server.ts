@@ -2,7 +2,7 @@ import express, { Request, Response } from "express";
 import bodyParser from "body-parser";
 import dotenv from "dotenv";
 import path from 'path';
-import logger from '../shared/types/utils/logger';
+import {logger} from "@space-x/shared/logger";
 
 
 dotenv.config({

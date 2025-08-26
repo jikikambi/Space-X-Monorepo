@@ -4,7 +4,8 @@
     "version": "0.0.0",
     "main": "dist/server.js",
     "scripts": {
-        "dev": "nodemon ./server.ts",
+        "dev": "nodemon",
+        "dev:gateway": "nodemon",
         "build": "tsc --project tsconfig.backend.json",
         "start": "node dist/server.js"
     },
@@ -12,6 +13,7 @@
         "nodemon": "^3.1.10",
         "ts-node": "^10.9.2",
         "ts-node-dev": "^2.0.0",
+        "tsconfig-paths": "^4.2.0",
         "@types/express": "^4.17.23"
     }
 }

@@ -5,21 +5,20 @@
     "module": "CommonJS",
 
     // Use modern language features
-    // lib : Tells TS which JS features are available in the runtime (e.g. Promise, Array.prototype.at, etc.)
-    // ["ESNext"] is safe for Node 18+ and ensures no missing type definitions from newer JS features
-    "lib": [ "ESNext"],
+    "lib": ["ESNext"],
 
-    // Output directory
-    "rootDir": "src",
+    // Root and output directories
+    "rootDir": ".",
     "outDir": "./dist",
 
     // Module resolution settings for monorepos
     "moduleResolution": "Node",
-    "baseUrl": "./src",
+    "baseUrl": ".", 
     "paths": {
-      "@shared/*": ["shared/*"]
+      "@space-x/shared/Launch": ["shared/types/Launch.ts"],
+      "@space-x/shared/logger": ["shared/utils/logger.ts"]
     },
-    "typeRoots": [ "./node_modules/@types"], // Pick up types globally
+    "typeRoots": ["./node_modules/@types"],
 
     // Compatibility flags
     "esModuleInterop": true,
@@ -32,10 +31,8 @@
     "forceConsistentCasingInFileNames": true
   },
   "include": [
-    "src/**/*"
+    "src/**/*",
+    "shared/**/*"
   ],
-  "exclude": [
-    "dist",
-    "node_modules"
-  ]
+  "exclude": ["dist", "node_modules"]
 }

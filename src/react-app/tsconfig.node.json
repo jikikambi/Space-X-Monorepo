@@ -19,7 +19,14 @@
     "noUnusedParameters": true,
     "erasableSyntaxOnly": true,
     "noFallthroughCasesInSwitch": true,
-    "noUncheckedSideEffectImports": true
+    "noUncheckedSideEffectImports": true,
+
+    /* Add paths for shared workspace */
+    "baseUrl": ".",
+    "paths": {
+      "@space-x/shared/Launch": ["../../shared/types/Launch.ts"],
+      "@space-x/shared/logger": ["../../shared/utils/logger.ts"]
+    }
   },
-  "include": ["vite.config.ts"]
+  "include": ["vite.config.ts", "../../shared/types/**/*"]
 }
