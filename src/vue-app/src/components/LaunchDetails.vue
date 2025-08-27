@@ -20,7 +20,7 @@ const { launch, rocket, launchpad, goBack, getYouTubeId } = useLaunchDetails();
              class="w-32 h-32 object-contain rounded-xl shadow"/>
       </div>
       <div>
-        <h2 class="text-3xl font-bold mb-2">{{ launch.name }}</h2>
+        <h2 class="text-3xl text-gray-500 font-bold mb-2">{{ launch.name }}</h2>
         <p class="text-gray-500">{{ new Date(launch.date_utc).toLocaleString() }}</p>
         <p class="font-medium mt-1"
            :class="launch.upcoming ? 'text-blue-600' : launch.success ? 'text-green-600' : 'text-red-600'">
@@ -30,25 +30,25 @@ const { launch, rocket, launchpad, goBack, getYouTubeId } = useLaunchDetails();
     </div>
 
     <!-- Rocket + Launchpad + Telemetry -->
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6 text-gray-500">
 
       <!-- Rocket Info -->
       <div class="bg-gray-50 rounded-xl p-4 shadow-sm">
-        <h3 class="text-lg font-semibold mb-2">🚀 Rocket</h3>
+        <h3 class="text-lg text-gray-500 font-semibold mb-2">🚀 Rocket</h3>
         <p><span class="font-medium">Name:</span> {{ rocket?.name || "N/A" }}</p>
         <p><span class="font-medium">Type:</span> {{ rocket?.type || "N/A" }}</p>
       </div>
 
       <!-- Launchpad Info -->
-      <div class="bg-gray-50 rounded-xl p-4 shadow-sm">
-        <h3 class="text-lg font-semibold mb-2">📍 Launchpad</h3>
+      <div class="bg-gray-50 text-gray-500 rounded-xl p-4 shadow-sm">
+        <h3 class="text-lg text-gray-500 font-semibold mb-2">📍 Launchpad</h3>
         <p><span class="font-medium">Name:</span> {{ launchpad?.full_name || "N/A" }}</p>
         <p><span class="font-medium">Region:</span> {{ launchpad?.region || "N/A" }}</p>
       </div>
 
       <!-- Telemetry / Flight Club -->
-      <div v-if="launch.telemetry?.flight_club" class="bg-gray-50 rounded-xl p-4 shadow-sm">
-        <h3 class="text-lg font-semibold mb-2">📡 Telemetry</h3>
+      <div v-if="launch.telemetry?.flight_club" class="bg-gray-50 text-gray-500 rounded-xl p-4 shadow-sm">
+        <h3 class="text-lg font-semibold mb-2 text-gray-500">📡 Telemetry</h3>
         <a :href="launch.telemetry.flight_club" target="_blank" class="text-blue-600 hover:underline">
           View Flight Club
         </a>
@@ -57,13 +57,13 @@ const { launch, rocket, launchpad, goBack, getYouTubeId } = useLaunchDetails();
 
     <!-- Mission Details -->
     <div>
-      <h3 class="text-xl font-semibold mb-2">Mission Details</h3>
-      <p class="whitespace-pre-wrap">{{ launch.details || "No details available" }}</p>
+      <h3 class="text-xl font-semibold text-gray-500 mb-2">Mission Details</h3>
+      <p class="whitespace-pre-wrap text-gray-500">{{ launch.details || "No details available" }}</p>
     </div>
 
     <!-- Flickr Carousel -->
     <div v-if="launch.links?.flickr?.original?.length" class="space-y-4">
-      <h4 class="text-md font-semibold">📸 Launch Photos</h4>
+      <h4 class="text-md font-semibold text-gray-500">📸 Launch Photos</h4>
       <Swiper
         :modules="[Navigation, Pagination, Autoplay]"
         :slides-per-view="1"
@@ -119,7 +119,7 @@ const { launch, rocket, launchpad, goBack, getYouTubeId } = useLaunchDetails();
 
   </div>
 
-  <div v-else class="text-center text-gray-500">
+  <div v-else class="text-center text-gray-800">
     Loading launch details...
   </div>
 </template>
