@@ -1,13 +1,13 @@
 <script lang="ts" setup>
-import { launchDetails } from './LaunchDetails';
 import { Swiper, SwiperSlide } from "swiper/vue";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/autoplay";
 import { Navigation, Pagination, Autoplay } from "swiper/modules";
+import { useLaunchDetails } from "./LaunchDetails"; 
 
-const { launch, goBack, getYouTubeId } = launchDetails();
+const { launch, rocket, launchpad, goBack, getYouTubeId } = useLaunchDetails();
 </script>
 
 <template>
@@ -15,8 +15,9 @@ const { launch, goBack, getYouTubeId } = launchDetails();
 
     <!-- Mission Header + Patch -->
     <div class="flex flex-col md:flex-row gap-6 items-center">
-      <div v-if="launch.links?.mission_patch" class="flex-shrink-0">
-        <img :src="launch.links.mission_patch" alt="Mission Patch" class="w-32 h-32 object-contain rounded-xl shadow"/>
+      <div v-if="launch.links?.patch?.large" class="flex-shrink-0">
+        <img :src="launch.links.patch.large" alt="Mission Patch"
+             class="w-32 h-32 object-contain rounded-xl shadow"/>
       </div>
       <div>
         <h2 class="text-3xl font-bold mb-2">{{ launch.name }}</h2>
@@ -28,21 +29,21 @@ const { launch, goBack, getYouTubeId } = launchDetails();
       </div>
     </div>
 
-    <!-- Rocket + Launch Site + Telemetry -->
+    <!-- Rocket + Launchpad + Telemetry -->
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
 
       <!-- Rocket Info -->
       <div class="bg-gray-50 rounded-xl p-4 shadow-sm">
         <h3 class="text-lg font-semibold mb-2">🚀 Rocket</h3>
-        <p><span class="font-medium">Name:</span> {{ launch.rocket?.rocket_name || "N/A" }}</p>
-        <p><span class="font-medium">Type:</span> {{ launch.rocket?.rocket_type || "N/A" }}</p>
+        <p><span class="font-medium">Name:</span> {{ rocket?.name || "N/A" }}</p>
+        <p><span class="font-medium">Type:</span> {{ rocket?.type || "N/A" }}</p>
       </div>
 
-      <!-- Launch Site -->
+      <!-- Launchpad Info -->
       <div class="bg-gray-50 rounded-xl p-4 shadow-sm">
-        <h3 class="text-lg font-semibold mb-2">📍 Launch Site</h3>
-        <p><span class="font-medium">Name:</span> {{ launch.launch_site?.site_name_long || "N/A" }}</p>
-        <p><span class="font-medium">ID:</span> {{ launch.launch_site?.site_id || "N/A" }}</p>
+        <h3 class="text-lg font-semibold mb-2">📍 Launchpad</h3>
+        <p><span class="font-medium">Name:</span> {{ launchpad?.full_name || "N/A" }}</p>
+        <p><span class="font-medium">Region:</span> {{ launchpad?.region || "N/A" }}</p>
       </div>
 
       <!-- Telemetry / Flight Club -->
@@ -52,7 +53,6 @@ const { launch, goBack, getYouTubeId } = launchDetails();
           View Flight Club
         </a>
       </div>
-
     </div>
 
     <!-- Mission Details -->
@@ -62,7 +62,7 @@ const { launch, goBack, getYouTubeId } = launchDetails();
     </div>
 
     <!-- Flickr Carousel -->
-    <div v-if="launch.links?.flickr_images?.length" class="space-y-4">
+    <div v-if="launch.links?.flickr?.original?.length" class="space-y-4">
       <h4 class="text-md font-semibold">📸 Launch Photos</h4>
       <Swiper
         :modules="[Navigation, Pagination, Autoplay]"
@@ -74,17 +74,17 @@ const { launch, goBack, getYouTubeId } = launchDetails();
         :autoplay="{ delay: 4000, disableOnInteraction: false }"
         class="rounded-xl shadow-lg"
       >
-        <SwiperSlide v-for="(img, i) in launch.links.flickr_images" :key="i" class="flex justify-center">
+        <SwiperSlide v-for="(img, i) in launch.links.flickr.original" :key="i" class="flex justify-center">
           <img :src="img" alt="Launch Photo" class="max-h-[500px] object-contain rounded-xl" />
         </SwiperSlide>
       </Swiper>
     </div>
 
     <!-- YouTube Video -->
-    <div v-if="getYouTubeId(launch.links?.video_link)" class="aspect-w-16 aspect-h-9">
+    <div v-if="getYouTubeId(launch.links?.webcast)" class="aspect-w-16 aspect-h-9">
       <iframe
         class="w-full h-96 rounded-lg"
-        :src="`https://www.youtube.com/embed/${getYouTubeId(launch.links?.video_link)}`"
+        :src="`https://www.youtube.com/embed/${getYouTubeId(launch.links?.webcast)}`"
         frameborder="0"
         allowfullscreen
       ></iframe>
@@ -92,14 +92,21 @@ const { launch, goBack, getYouTubeId } = launchDetails();
 
     <!-- External Links -->
     <div class="flex flex-wrap gap-3 mb-6 justify-center">
-      <a v-if="launch.links?.wikipedia" :href="launch.links.wikipedia" target="_blank" class="px-3 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
+      <a v-if="launch.links?.wikipedia" :href="launch.links.wikipedia" target="_blank"
+         class="px-3 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
         Wikipedia
       </a>
-      <a v-if="launch.links?.article_link" :href="launch.links.article_link" target="_blank" class="px-3 py-2 bg-green-500 text-white rounded hover:bg-green-600">
+      <a v-if="launch.links?.article" :href="launch.links.article" target="_blank"
+         class="px-3 py-2 bg-green-500 text-white rounded hover:bg-green-600">
         Article
       </a>
-      <a v-if="launch.links?.presskit" :href="launch.links.presskit" target="_blank" class="px-3 py-2 bg-purple-500 text-white rounded hover:bg-purple-600">
+      <a v-if="launch.links?.presskit" :href="launch.links.presskit" target="_blank"
+         class="px-3 py-2 bg-purple-500 text-white rounded hover:bg-purple-600">
         Presskit
+      </a>
+      <a v-if="launch.links?.reddit?.launch" :href="launch.links.reddit.launch" target="_blank"
+         class="px-3 py-2 bg-red-500 text-white rounded hover:bg-red-600">
+        Reddit Thread
       </a>
     </div>
 
@@ -113,6 +120,6 @@ const { launch, goBack, getYouTubeId } = launchDetails();
   </div>
 
   <div v-else class="text-center text-gray-500">
-    Select a launch to see details
+    Loading launch details...
   </div>
 </template>
