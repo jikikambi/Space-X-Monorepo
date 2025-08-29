@@ -30,6 +30,7 @@ export function broadcastEvent(event: SpaceXEvent) {
 
   clients.forEach((client, index) => {
     try {
+      console.log(client)
       client.write(data);
     } catch (err) {
       console.error(`[SSE] Failed to write to client #${index}`, err);

@@ -3,7 +3,7 @@ import { registerClient } from "../sse";
 
 const router = express.Router();
 
-router.get("/", (req, res) => {
+router.get("/events", (req, res) => {
   registerClient(res);
 });
 

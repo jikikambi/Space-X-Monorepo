@@ -1,12 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
-import spaceXReducer from "./slices/spaceXSlice";
+import launchReducer from "./slices/launchSlice";
 
 export const store = configureStore({
   reducer: {
-    spaceX: spaceXReducer,
+    launch: launchReducer,
   },
 });
 
-// TypeScript types
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
