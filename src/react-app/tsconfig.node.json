@@ -1,37 +1,3 @@
-// {
-//   "compilerOptions": {
-//     "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.node.tsbuildinfo",
-//     "target": "ES2023",
-//     "lib": ["ES2023"],
-//     "module": "ESNext",
-//     "skipLibCheck": true,
-    
-//     "moduleResolution": "bundler",
-//     "allowImportingTsExtensions": true,
-//     "verbatimModuleSyntax": true,
-//     "moduleDetection": "force",
-//     "noEmit": true,
-
-//     "strict": true,
-//     "noUnusedLocals": true,
-//     "noUnusedParameters": true,
-//     "erasableSyntaxOnly": true,
-//     "noFallthroughCasesInSwitch": true,
-//     "noUncheckedSideEffectImports": true,
-    
-//     "baseUrl": ".",
-//     "paths": {
-//       "@space-x/shared/Launch": ["shared/types/Launch.ts"],
-//       "@space-x/shared/Launchpad": ["shared/types/Launchpad.ts"],
-//       "@space-x/shared/Rocket": ["shared/types/Rocket.ts"],
-//       "@space-x/shared/Ship": ["shared/types/Ship.ts"],
-//       "@space-x/shared/Payload": ["shared/types/Payload.ts"],
-//       "@space-x/shared/logger": ["shared/utils/logger.ts"]
-//     }
-//   },
-//   "include": ["vite.config.ts", "../../shared/types/**/*"]
-// }
-
 {
   "compilerOptions": {
     "module": "NodeNext",

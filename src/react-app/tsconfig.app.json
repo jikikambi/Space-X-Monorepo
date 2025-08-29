@@ -8,8 +8,6 @@
     "useDefineForClassFields": true,
     "skipLibCheck": true,
 
-    /* Bundler / ESM mode */
-    // "moduleResolution": "nodenext",
     "moduleResolution": "bundler",
     
     "verbatimModuleSyntax": true,
@@ -17,7 +15,6 @@
     "noEmit": true,
     "jsx": "react-jsx",
 
-    /* Linting */
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
@@ -29,8 +26,7 @@
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "resolveJsonModule": true,
-
-    /* Shared workspace paths */
+   
     "baseUrl": "../../",
     "paths": {
       "@space-x/shared/Launch": ["shared/types/Launch.ts"],

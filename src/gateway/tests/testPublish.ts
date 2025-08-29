@@ -1,4 +1,4 @@
-import { rabbitMQ } from "../mq"; // singleton instance
+import { rabbitMQ } from "../mq";
 import { SpaceXEvent } from "../types/types";
 
 async function testPublish() {
