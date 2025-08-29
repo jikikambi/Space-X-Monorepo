@@ -1,7 +1,7 @@
 import request from "supertest";
 import express, { Express } from "express";
 import dotenv from "dotenv";
-import launchesRouter from "../routes/launches";
+import launchesRouter from "../routes/launchEnricher";
 
 // Load environment variables
 dotenv.config();

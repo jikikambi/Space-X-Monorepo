@@ -5,7 +5,7 @@ const sharedConfig = require(path.resolve(__dirname, "../../tailwind.config.js")
 module.exports = {
     ...sharedConfig,
     content: [
-        path.join(__dirname, "src/**/*.{vue,js,ts,jsx,tsx}"),
+        path.join(__dirname, "src/**/*.{js,jsx,ts,tsx}"),
         path.join(__dirname, "public/index.html"),
     ],
 };

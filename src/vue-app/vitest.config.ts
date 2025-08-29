@@ -8,8 +8,7 @@ export default defineConfig({
   plugins: [vue(), vueDevTools()],
   resolve: {
     alias: {
-      "@": fileURLToPath(new URL("./src", import.meta.url)),
-      
+      "@": fileURLToPath(new URL("./src", import.meta.url)),      
       "@space-x/shared": fileURLToPath(new URL("../../shared", import.meta.url)),
     },
   },

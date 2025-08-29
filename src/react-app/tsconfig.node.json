@@ -1,32 +1,57 @@
+// {
+//   "compilerOptions": {
+//     "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.node.tsbuildinfo",
+//     "target": "ES2023",
+//     "lib": ["ES2023"],
+//     "module": "ESNext",
+//     "skipLibCheck": true,
+    
+//     "moduleResolution": "bundler",
+//     "allowImportingTsExtensions": true,
+//     "verbatimModuleSyntax": true,
+//     "moduleDetection": "force",
+//     "noEmit": true,
+
+//     "strict": true,
+//     "noUnusedLocals": true,
+//     "noUnusedParameters": true,
+//     "erasableSyntaxOnly": true,
+//     "noFallthroughCasesInSwitch": true,
+//     "noUncheckedSideEffectImports": true,
+    
+//     "baseUrl": ".",
+//     "paths": {
+//       "@space-x/shared/Launch": ["shared/types/Launch.ts"],
+//       "@space-x/shared/Launchpad": ["shared/types/Launchpad.ts"],
+//       "@space-x/shared/Rocket": ["shared/types/Rocket.ts"],
+//       "@space-x/shared/Ship": ["shared/types/Ship.ts"],
+//       "@space-x/shared/Payload": ["shared/types/Payload.ts"],
+//       "@space-x/shared/logger": ["shared/utils/logger.ts"]
+//     }
+//   },
+//   "include": ["vite.config.ts", "../../shared/types/**/*"]
+// }
+
 {
   "compilerOptions": {
-    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.node.tsbuildinfo",
-    "target": "ES2023",
-    "lib": ["ES2023"],
-    "module": "ESNext",
-    "skipLibCheck": true,
-
-    /* Bundler mode */
-    "moduleResolution": "bundler",
-    "allowImportingTsExtensions": true,
-    "verbatimModuleSyntax": true,
-    "moduleDetection": "force",
-    "noEmit": true,
-
-    /* Linting */
-    "strict": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "erasableSyntaxOnly": true,
-    "noFallthroughCasesInSwitch": true,
-    "noUncheckedSideEffectImports": true,
-
-    /* Add paths for shared workspace */
-    "baseUrl": ".",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "target": "ES2022",
+    "lib": ["ES2022"],
+    "baseUrl": "../../",
     "paths": {
-      "@space-x/shared/Launch": ["../../shared/types/Launch.ts"],
-      "@space-x/shared/logger": ["../../shared/utils/logger.ts"]
-    }
+      "@space-x/shared/Launch": ["shared/types/Launch.ts"],
+      "@space-x/shared/Launchpad": ["shared/types/Launchpad.ts"],
+      "@space-x/shared/Rocket": ["shared/types/Rocket.ts"],
+      "@space-x/shared/Ship": ["shared/types/Ship.ts"],
+      "@space-x/shared/Payload": ["shared/types/Payload.ts"],
+      "@space-x/shared/logger": ["shared/utils/logger.ts"]
+    },
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "resolveJsonModule": true,
+    "strict": true,
+    "noEmit": true
   },
-  "include": ["vite.config.ts", "../../shared/types/**/*"]
+  "include": ["vite.config.ts", "vitest.config.ts", "../../shared/types/**/*"]
 }

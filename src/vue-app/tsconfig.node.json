@@ -7,6 +7,10 @@
     "baseUrl": "../../",
     "paths": {
       "@space-x/shared/Launch": ["shared/types/Launch.ts"],
+      "@space-x/shared/Launchpad": ["shared/types/Launchpad.ts"],
+      "@space-x/shared/Rocket": ["shared/types/Rocket.ts"],
+      "@space-x/shared/Ship": ["shared/types/Ship.ts"],
+      "@space-x/shared/Payload": ["shared/types/Payload.ts"],
       "@space-x/shared/logger": ["shared/utils/logger.ts"]
     },
     "esModuleInterop": true,

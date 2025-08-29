@@ -4,10 +4,12 @@ import { fetchLaunches } from '../services/api';
 import { ref, computed } from 'vue';
 import router from '../router';
 
+
 export type SortKey = 'name' | 'status' | 'date';
 export type FilterStatus = 'all' | 'upcoming' | 'past';
 
 export function listLaunches(pageSize = 10) {
+
   const manager = new TableManager<Launch>({
     fetchData: fetchLaunches,
     pageSize,
@@ -79,8 +81,8 @@ export function listLaunches(pageSize = 10) {
       }
 
       return valA < valB ? (manager.sortAsc.value ? -1 : 1)
-           : valA > valB ? (manager.sortAsc.value ? 1 : -1)
-           : 0;
+        : valA > valB ? (manager.sortAsc.value ? 1 : -1)
+          : 0;
     });
   });
 

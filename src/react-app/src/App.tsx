@@ -1,17 +1,12 @@
-import React, { useState } from "react";
-import LaunchList from "./components/LaunchList";
-import LaunchDetails from "./components/LaunchDetails";
+import React from "react";
+import "./store/eventListener"; // start listening to SSE events
+import { LaunchDashboard } from "./components/LaunchDashboard";
 
 const App: React.FC = () => {
-  const [selectedLaunchId, setSelectedLaunchId] = useState<string | null>(null);
-
   return (
-    <div>
-      <h1>SpaceX Launches</h1>
-      <div style={{ display: "flex", gap: "2rem" }}>
-        <LaunchList onSelect={setSelectedLaunchId} />
-        <LaunchDetails launchId={selectedLaunchId} />
-      </div>
+    <div className="App">
+      <h1>SpaceX Launch Dashboard</h1>
+      <LaunchDashboard />
     </div>
   );
 };

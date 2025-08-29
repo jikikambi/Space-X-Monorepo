@@ -1,10 +1,48 @@
+// {
+//   "extends": "../../tsconfig.json",
+//   "compilerOptions": {
+//     "outDir": "../../dist/gateway"
+//   },
+//   "include": [
+//     "./**/*",
+//     "../../shared/types/**/*",
+//     "../../shared/utils/**/*"
+//   ],
+//   "exclude": [
+//     "../../dist",
+//     "node_modules"
+//   ]
+// }
+
+// {
+//   "extends": "../../tsconfig.json",
+//   "compilerOptions": {
+//     "outDir": "../../dist/gateway"
+//   },
+//   "include": [
+//     "./**/*",
+//     "./types/**/*",
+//     "../../shared/types/**/*",
+//     "../../shared/utils/**/*"
+//   ],
+//   "exclude": [
+//     "../../dist",
+//     "node_modules"
+//   ]
+// }
+
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "outDir": "../../dist/gateway"
+    "outDir": "../../dist/gateway",
+    "typeRoots": [
+      "./types",
+      "../../node_modules/@types"
+    ]
   },
   "include": [
     "./**/*",
+    "./types/**/*",
     "../../shared/types/**/*",
     "../../shared/utils/**/*"
   ],

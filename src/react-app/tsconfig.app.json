@@ -1,17 +1,17 @@
 {
+  "extends": ["../../tsconfig.json"],
   "compilerOptions": {
     "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
-    //"target": "ES2022",
-     "target": "ESNext",
+    "target": "ESNext",
     "module": "ESNext",
-    // "lib": ["ESNext", "DOM", "DOM.Iterable"],
     "lib": ["ESNext", "DOM", "DOM.Iterable"],
     "useDefineForClassFields": true,
     "skipLibCheck": true,
 
-    /* Bundler mode */
+    /* Bundler / ESM mode */
+    // "moduleResolution": "nodenext",
     "moduleResolution": "bundler",
-    "allowImportingTsExtensions": true,
+    
     "verbatimModuleSyntax": true,
     "moduleDetection": "force",
     "noEmit": true,
@@ -25,12 +25,21 @@
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true,
 
-    /* Add paths for shared workspace */
-    "baseUrl": ".",
+    "allowImportingTsExtensions": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+
+    /* Shared workspace paths */
+    "baseUrl": "../../",
     "paths": {
-      "@space-x/shared/Launch": ["../../shared/types/Launch.ts"],
-      "@space-x/shared/logger": ["../../shared/utils/logger.ts"]
+      "@space-x/shared/Launch": ["shared/types/Launch.ts"],
+      "@space-x/shared/Launchpad": ["shared/types/Launchpad.ts"],
+      "@space-x/shared/Rocket": ["shared/types/Rocket.ts"],
+      "@space-x/shared/Ship": ["shared/types/Ship.ts"],
+      "@space-x/shared/Payload": ["shared/types/Payload.ts"],
+      "@space-x/shared/logger": ["shared/utils/logger.ts"]
     }
   },
-  "include": ["src", "../../shared/types/**/*"]
+  "include": ["src/**/*.ts", "src/**/*.tsx", "../../shared/types/**/*", "src/types/**/*.d.ts"]
 }
