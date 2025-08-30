@@ -12,7 +12,8 @@ router.post("/publish", async (req: Request, res) => {
 
     const body = req.body;
     if (Array.isArray(body)) {
-      for (const event of body) await handleEvent(event);
+      //for (const event of body) await handleEvent(event);
+      await Promise.all(body.map((event) => handleEvent(event)));
     } else if (typeof body === "object" && body !== null) {
       await handleEvent(body);
     } else {

@@ -1,6 +1,7 @@
 import amqp, { Channel } from "amqplib";
 import { logger } from "@space-x/shared/logger";
 import { SpaceXEvent } from "../types/types";
+import { config } from "../config/env";
 
 const QUEUE_NAME = "spacex.events";
 
@@ -8,19 +9,23 @@ export class RabbitMQ {
   private conn: any;
   private channel: any;
   private isConnecting = false;
+   private url: string;
 
   // Buffer events when RabbitMQ is unavailable
   private eventBuffer: SpaceXEvent[] = [];
   private flushIntervalMs = 1000;
   private lastPublishAttempt: Date | null = null;
-
-  constructor(private url: string = process.env.RABBITMQ_URL || "amqp://localhost") {}
+  
+  constructor(url: string) {
+    this.url = url;
+  }
 
   /** Connect to RabbitMQ with retries and auto-reconnect */
-  public async connectRabbitMQ(retries: number = 5, delayMs: number = 2000): Promise<Channel> {
+  public async connectRabbitMQ(retries: number = config.MQ_RETRIES, retryDelay: number = config.MQ_RETRY_DELAY): Promise<Channel> {
+
     if (this.channel) return this.channel;
     if (this.isConnecting) {
-      await new Promise(res => setTimeout(res, delayMs));
+      await new Promise(res => setTimeout(res, retryDelay));
       return this.channel!;
     }
 
@@ -52,8 +57,8 @@ export class RabbitMQ {
       } catch (err: any) {
         logger.error(`[RabbitMQ] Connection attempt ${attempt} failed:`, err.message);
         if (attempt < retries) {
-          await new Promise(res => setTimeout(res, delayMs));
-          delayMs *= 2; // exponential backoff
+          await new Promise(res => setTimeout(res, retryDelay));
+          retryDelay *= 2; // exponential backoff
         } else {
           logger.warn("[RabbitMQ] Max retries reached. Will retry in background...");
           setTimeout(() => this.connectRabbitMQ(retries, 2000), 5000);
@@ -142,4 +147,6 @@ export class RabbitMQ {
 }
 
 // Export a singleton instance
-export const rabbitMQ = new RabbitMQ();
+export const rabbitMQ = new RabbitMQ(
+  process.env.RABBITMQ_URL || "amqp://localhost"
+);

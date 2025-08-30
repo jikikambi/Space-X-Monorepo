@@ -1,5 +1,5 @@
 import express from "express";
-import { registerClient } from "../sse";
+import { registerClient } from "../sse/sseManager";
 
 const router = express.Router();
 
