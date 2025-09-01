@@ -4,8 +4,8 @@ services:
   rabbitmq:
     image: rabbitmq:3-management
     ports:
-      - "5672:5672"    # RabbitMQ for amqplib
-      - "15672:15672"  # RabbitMQ Management UI
+      - "5672:5672"       # RabbitMQ for AMQP
+      - "15672:15672"     # RabbitMQ Management UI
     environment:
       RABBITMQ_DEFAULT_USER: guest
       RABBITMQ_DEFAULT_PASS: guest
@@ -15,3 +15,17 @@ services:
     ports:
       - "6379:6379"
     command: ["redis-server", "--appendonly", "yes"]
+
+  mongo:
+    image: mongo:6.0
+    container_name: mongodb
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: Pa55Word
+    volumes:
+      - mongo-data:/data/db
+
+volumes:
+  mongo-data:

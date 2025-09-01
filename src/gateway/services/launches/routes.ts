@@ -12,7 +12,6 @@ router.post("/publish", async (req: Request, res) => {
 
     const body = req.body;
     if (Array.isArray(body)) {
-      //for (const event of body) await handleEvent(event);
       await Promise.all(body.map((event) => handleEvent(event)));
     } else if (typeof body === "object" && body !== null) {
       await handleEvent(body);
@@ -21,8 +20,8 @@ router.post("/publish", async (req: Request, res) => {
     }
 
     res.status(200).json({ success: true });
-  } catch (err) {
-    logger.error("[Gateway] Failed to publish events:", err);
+  } catch (err:any) {
+    logger.error("[Gateway] Failed to publish events:", { message: err?.message ?? String(err), stack: err?.stack });
     res.status(500).json({ success: false, error: "Internal server error" });
   }
 });

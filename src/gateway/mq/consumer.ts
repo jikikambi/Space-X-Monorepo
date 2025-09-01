@@ -2,9 +2,7 @@ import { Channel } from "amqplib";
 import { logger } from "@space-x/shared/logger";
 import { handleEvent } from "../services/launches/handler";
 
-/**
- * Starts consuming messages from RabbitMQ and forwards them to handlers.
- */
+/** Starts consuming messages from RabbitMQ and forwards them to handlers. */
 export async function startConsumer(channel: Channel) {
   const queue = process.env.RABBITMQ_QUEUE || "spacex-events";
 
@@ -21,7 +19,7 @@ export async function startConsumer(channel: Channel) {
       channel.ack(msg);
     } catch (err) {
       logger.error("[RabbitMQ] Failed to process message:", err);
-      channel.nack(msg, false, false); // discard bad messages
+      channel.nack(msg, false, false);
     }
   }, { noAck: false });
 }
